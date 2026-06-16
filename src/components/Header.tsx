@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -58,15 +59,42 @@ export default function Header() {
           href="/"
           style={{
             textDecoration: "none",
-            color: "#fff",
-            fontFamily: "var(--font-inter), -apple-system, sans-serif",
-            fontSize: 18,
-            fontWeight: 700,
-            letterSpacing: "-0.03em",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
             flexShrink: 0,
           }}
         >
-          Fernandes Import
+          <div
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 10,
+              overflow: "hidden",
+              flexShrink: 0,
+              border: "1px solid rgba(255,255,255,0.12)",
+            }}
+          >
+            <Image
+              src="/logo.jpg"
+              alt="Fernandes Import"
+              width={36}
+              height={36}
+              style={{ objectFit: "cover", display: "block" }}
+              unoptimized
+            />
+          </div>
+          <span
+            style={{
+              color: "#fff",
+              fontSize: 17,
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              fontFamily: "var(--font-inter), -apple-system, sans-serif",
+            }}
+          >
+            Fernandes Import
+          </span>
         </a>
 
         {/* Desktop Nav */}

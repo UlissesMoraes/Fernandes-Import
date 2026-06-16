@@ -5,6 +5,7 @@ import Destaque from "@/components/Destaque";
 import Assistencia from "@/components/Assistencia";
 import Diferenciais from "@/components/Diferenciais";
 import Depoimentos from "@/components/Depoimentos";
+import Instagram from "@/components/Instagram";
 import Localizacao from "@/components/Localizacao";
 import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
@@ -20,6 +21,7 @@ export default function Home() {
         <Assistencia />
         <Diferenciais />
         <Depoimentos />
+        <Instagram />
         <Localizacao />
         <CTAFinal />
       </main>
