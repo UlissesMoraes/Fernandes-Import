@@ -18,32 +18,33 @@ interface Product {
 }
 
 const CDN = "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is";
+const Q = "?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1";
 
 const products: Record<Category, Product[]> = {
   iPhone: [
     {
       name: "iPhone 16 Pro",
       description: "Chip A18 Pro. Câmera de 48MP com zoom 5x. Titânio.",
-      image: "/produtos/iphone/ip16-68f8ee3a79c7f-1400x1400.webp",
+      image: `${CDN}/iphone-16-pro-finish-unselect-gallery-1-202409${Q}`,
       gradient: "linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%)",
       badge: "Novo",
     },
     {
       name: "iPhone 16",
       description: "Chip A18. Câmera Fusão de 48MP. Controle de Câmera.",
-      image: `${CDN}/iphone-16-finish-unselect-gallery-1-202409_FMT_WHH`,
+      image: `${CDN}/iphone-16-finish-unselect-gallery-1-202409${Q}`,
       gradient: "linear-gradient(135deg, #C0E8FF 0%, #9FBCFF 100%)",
     },
     {
       name: "iPhone 15 Pro",
       description: "Chip A17 Pro. Frame de titânio. USB-C 3.0.",
-      image: `${CDN}/iphone-15-pro-finish-unselect-gallery-1-202309_FMT_WHH`,
+      image: `${CDN}/iphone-15-pro-finish-unselect-gallery-1-202309${Q}`,
       gradient: "linear-gradient(135deg, #D4A676 0%, #8B7355 100%)",
     },
     {
       name: "iPhone 15",
       description: "Chip A16 Bionic. Dynamic Island. USB-C.",
-      image: `${CDN}/iphone-15-finish-unselect-gallery-1-202309_FMT_WHH`,
+      image: `${CDN}/iphone-15-finish-unselect-gallery-1-202309${Q}`,
       gradient: "linear-gradient(135deg, #FFD7C2 0%, #FFB8A2 100%)",
     },
   ],
@@ -51,20 +52,20 @@ const products: Record<Category, Product[]> = {
     {
       name: 'MacBook Pro 14"',
       description: "Chip M4 Pro. Tela Liquid Retina XDR. Até 24h de bateria.",
-      image: `${CDN}/mbp14-m4pro-spacegray-select-202411_FMT_WHH`,
+      image: `${CDN}/mbp14-m4pro-spacegray-select-202411${Q}`,
       gradient: "linear-gradient(135deg, #3A3A3C 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
     {
       name: 'MacBook Pro 16"',
       description: "Chip M4 Max. Potência máxima para profissionais.",
-      image: `${CDN}/mbp16-m4pro-spacegray-select-202411_FMT_WHH`,
+      image: `${CDN}/mbp16-m4pro-spacegray-select-202411${Q}`,
       gradient: "linear-gradient(135deg, #4A4A4C 0%, #2C2C2E 100%)",
     },
     {
       name: "MacBook Air M3",
       description: "Chip M3. Ultra-fino. Perfeito para o dia a dia.",
-      image: `${CDN}/mba13-m3-midnight-select-202402_FMT_WHH`,
+      image: `${CDN}/mba13-m3-midnight-select-202402${Q}`,
       gradient: "linear-gradient(135deg, #E8D5B7 0%, #C4A882 100%)",
     },
   ],
@@ -72,20 +73,20 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPad Pro M4",
       description: "O mais fino Apple de sempre. Tela Ultra Retina XDR.",
-      image: `${CDN}/ipad-pro-13-m4-select-202405_FMT_WHH`,
+      image: `${CDN}/ipad-pro-13-m4-select-202405${Q}`,
       gradient: "linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%)",
       badge: "Novo",
     },
     {
       name: "iPad Air M2",
       description: "Chip M2. Tela Liquid Retina. Compatível com Apple Pencil.",
-      image: `${CDN}/ipad-air-select-202405_FMT_WHH`,
+      image: `${CDN}/ipad-air-select-202405${Q}`,
       gradient: "linear-gradient(135deg, #B8D4F5 0%, #93B8E8 100%)",
     },
     {
       name: "iPad mini",
       description: "Compacto e poderoso. Chip A17 Pro. Design atemporal.",
-      image: "/produtos/ipad/ipad-mini-finish-unselect-gallery-1-202410_FMT_WHH.jpg",
+      image: `${CDN}/ipad-mini-finish-unselect-gallery-1-202410${Q}`,
       gradient: "linear-gradient(135deg, #D4C5E2 0%, #B8A4CF 100%)",
     },
   ],
@@ -93,20 +94,20 @@ const products: Record<Category, Product[]> = {
     {
       name: "AirPods Pro 2",
       description: "Cancelamento de ruído ativo. Áudio Adaptativo. H2 chip.",
-      image: `${CDN}/airpods-pro-2nd-gen-hero-202209_FMT_WHH`,
+      image: `${CDN}/airpods-pro-2nd-gen-hero-202209${Q}`,
       gradient: "linear-gradient(135deg, #F5F5F7 0%, #E0E0E5 100%)",
       badge: "Best-seller",
     },
     {
       name: "AirPods 4",
       description: "Novo design aberto. Qualidade de som extraordinária.",
-      image: "/produtos/airpods/airpods-4-down-compare-202409_FMT_WHH.jpg",
+      image: `${CDN}/airpods-4-down-compare-202409${Q}`,
       gradient: "linear-gradient(135deg, #FFFFFF 0%, #F0F0F5 100%)",
     },
     {
       name: "AirPods Max",
       description: "Over-ear premium. Cancelamento de ruído de nível pro.",
-      image: `${CDN}/airpods-max-select-202409_FMT_WHH`,
+      image: `${CDN}/airpods-max-select-202409${Q}`,
       gradient: "linear-gradient(135deg, #1C2D40 0%, #2D4A5F 100%)",
     },
   ],
@@ -114,14 +115,14 @@ const products: Record<Category, Product[]> = {
     {
       name: "Apple Watch Series 10",
       description: "O mais fino Apple Watch. Tela maior. Chip S10.",
-      image: "/produtos/apple-watch/watch_og_339223162.png",
+      image: `${CDN}/watch-series-10-select-202409${Q}`,
       gradient: "linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
     {
       name: "Apple Watch Ultra 2",
       description: "Resistência extrema. Titânio. GPS de precisão dual.",
-      image: `${CDN}/watch-ultra2-select-202309_FMT_WHH`,
+      image: `${CDN}/watch-ultra2-select-202309${Q}`,
       gradient: "linear-gradient(135deg, #D4A843 0%, #A07830 100%)",
     },
   ],
@@ -184,8 +185,9 @@ function ProductCard({ product }: { product: Product }) {
             src={product.image}
             alt={product.name}
             fill
+            unoptimized
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain", padding: 16 }}
             onError={() => setImgError(true)}
           />
         )}
