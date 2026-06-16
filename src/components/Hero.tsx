@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const WA_LINK =
@@ -14,6 +15,181 @@ const fadeUp = {
   }),
 };
 
+function IPhoneCSS() {
+  return (
+    <div style={{ position: "relative" }}>
+      {/* iPhone body */}
+      <div
+        style={{
+          width: 240,
+          height: 490,
+          borderRadius: 44,
+          background: "linear-gradient(160deg, #1C1C1E 0%, #000 60%)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          boxShadow:
+            "0 40px 120px rgba(0,113,227,0.25), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: 12,
+            left: 12,
+            right: 12,
+            bottom: 12,
+            borderRadius: 34,
+            background: "linear-gradient(160deg, #0A0A0F 0%, #050508 100%)",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 14,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: 88,
+              height: 30,
+              background: "#000",
+              borderRadius: 20,
+              zIndex: 2,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(ellipse 70% 50% at 50% 30%, rgba(0,113,227,0.15) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: 60,
+              left: 24,
+              right: 24,
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 16,
+            }}
+          >
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 12,
+                  background: `rgba(255,255,255,${0.04 + (i % 3) * 0.02})`,
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
+              />
+            ))}
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 16,
+              left: 16,
+              right: 16,
+              height: 50,
+              borderRadius: 16,
+              background: "rgba(255,255,255,0.06)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
+          />
+        </div>
+        {[
+          { top: 100, height: 36 },
+          { top: 152, height: 56 },
+          { top: 220, height: 56 },
+        ].map((btn, i) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: -3,
+              top: btn.top,
+              width: 4,
+              height: btn.height,
+              background: "#2C2C2E",
+              borderRadius: "2px 0 0 2px",
+            }}
+          />
+        ))}
+        <div
+          style={{
+            position: "absolute",
+            right: -3,
+            top: 180,
+            width: 4,
+            height: 80,
+            background: "#2C2C2E",
+            borderRadius: "0 2px 2px 0",
+          }}
+        />
+      </div>
+      {/* Glow */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: -40,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 200,
+          height: 60,
+          background: "rgba(0,113,227,0.3)",
+          borderRadius: "50%",
+          filter: "blur(30px)",
+        }}
+      />
+    </div>
+  );
+}
+
+function IPhoneSVG() {
+  const [error, setError] = useState(false);
+
+  if (error) return <IPhoneCSS />;
+
+  return (
+    <div style={{ position: "relative" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/hero-iphone.svg"
+        alt="iPhone 3D"
+        onError={() => setError(true)}
+        style={{
+          maxHeight: 540,
+          width: "auto",
+          display: "block",
+          filter:
+            "drop-shadow(0 40px 80px rgba(0,113,227,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.1))",
+        }}
+      />
+      {/* Glow sob a imagem */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: -24,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "60%",
+          height: 48,
+          background: "rgba(0,113,227,0.35)",
+          borderRadius: "50%",
+          filter: "blur(28px)",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section
@@ -26,7 +202,7 @@ export default function Hero() {
         position: "relative",
       }}
     >
-      {/* Background subtle gradient */}
+      {/* Background ambient */}
       <div
         style={{
           position: "absolute",
@@ -172,7 +348,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right — iPhone Illustration */}
+        {/* Right — iPhone (SVG real ou fallback CSS) */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
@@ -185,165 +361,10 @@ export default function Hero() {
           className="hero-phone-wrapper"
         >
           <motion.div
-            animate={{ y: [-12, 12, -12] }}
+            animate={{ y: [-14, 14, -14] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            style={{ position: "relative" }}
           >
-            {/* iPhone body */}
-            <div
-              style={{
-                width: 240,
-                height: 490,
-                borderRadius: 44,
-                background: "linear-gradient(160deg, #1C1C1E 0%, #000 60%)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                boxShadow:
-                  "0 40px 120px rgba(0,113,227,0.25), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1)",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              {/* Screen */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 12,
-                  left: 12,
-                  right: 12,
-                  bottom: 12,
-                  borderRadius: 34,
-                  background: "linear-gradient(160deg, #0A0A0F 0%, #050508 100%)",
-                  overflow: "hidden",
-                }}
-              >
-                {/* Dynamic Island */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 14,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    width: 88,
-                    height: 30,
-                    background: "#000",
-                    borderRadius: 20,
-                    zIndex: 2,
-                  }}
-                />
-
-                {/* Screen content gradient */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "radial-gradient(ellipse 70% 50% at 50% 30%, rgba(0,113,227,0.15) 0%, transparent 70%)",
-                  }}
-                />
-
-                {/* App grid dots */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 60,
-                    left: 24,
-                    right: 24,
-                    display: "grid",
-                    gridTemplateColumns: "repeat(4, 1fr)",
-                    gap: 16,
-                  }}
-                >
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: 12,
-                        background: `rgba(255,255,255,${0.04 + (i % 3) * 0.02})`,
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    />
-                  ))}
-                </div>
-
-                {/* Dock */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 16,
-                    left: 16,
-                    right: 16,
-                    height: 50,
-                    borderRadius: 16,
-                    background: "rgba(255,255,255,0.06)",
-                    backdropFilter: "blur(20px)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                  }}
-                />
-              </div>
-
-              {/* Side buttons */}
-              <div
-                style={{
-                  position: "absolute",
-                  left: -3,
-                  top: 100,
-                  width: 4,
-                  height: 36,
-                  background: "#2C2C2E",
-                  borderRadius: "2px 0 0 2px",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  left: -3,
-                  top: 152,
-                  width: 4,
-                  height: 56,
-                  background: "#2C2C2E",
-                  borderRadius: "2px 0 0 2px",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  left: -3,
-                  top: 220,
-                  width: 4,
-                  height: 56,
-                  background: "#2C2C2E",
-                  borderRadius: "2px 0 0 2px",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  right: -3,
-                  top: 180,
-                  width: 4,
-                  height: 80,
-                  background: "#2C2C2E",
-                  borderRadius: "0 2px 2px 0",
-                }}
-              />
-            </div>
-
-            {/* Glow under phone */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: -40,
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: 200,
-                height: 60,
-                background: "rgba(0,113,227,0.3)",
-                borderRadius: "50%",
-                filter: "blur(30px)",
-              }}
-            />
+            <IPhoneSVG />
           </motion.div>
         </motion.div>
       </div>
