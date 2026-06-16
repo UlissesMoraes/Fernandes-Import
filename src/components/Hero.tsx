@@ -1,5 +1,6 @@
 "use client";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -152,53 +153,43 @@ function IPhoneCSS() {
 }
 
 function IPhoneSVG() {
-  const [failed, setFailed] = useState(false);
-  const [visible, setVisible] = useState(false);
-
   return (
     <div style={{ position: "relative" }}>
-      {/* CSS fallback — mostrado enquanto PNG carrega ou se falhar */}
-      <div style={{ opacity: visible && !failed ? 0 : 1, transition: "opacity 0.4s ease", position: visible && !failed ? "absolute" : "relative" }}>
-        <IPhoneCSS />
-      </div>
+      {/* CSS base sempre visível */}
+      <IPhoneCSS />
 
+      {/* PNG por cima — transparência se mistura ao CSS base */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      {!failed && (
-        <img
-          src="/hero-iphone.png"
-          alt="iPhone 3D"
-          loading="eager"
-          onLoad={() => setVisible(true)}
-          onError={() => setFailed(true)}
-          style={{
-            maxHeight: 540,
-            width: "auto",
-            position: visible ? "relative" : "absolute",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.4s ease",
-            filter:
-              "drop-shadow(0 40px 80px rgba(0,113,227,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.1))",
-          }}
-        />
-      )}
+      <img
+        src="/hero-iphone.png"
+        alt="iPhone"
+        loading="eager"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          filter:
+            "drop-shadow(0 0 24px rgba(0,113,227,0.4)) drop-shadow(0 40px 80px rgba(0,113,227,0.3))",
+        }}
+      />
 
-      {/* Glow sob a imagem PNG */}
-      {visible && !failed && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: -24,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "60%",
-            height: 48,
-            background: "rgba(0,113,227,0.35)",
-            borderRadius: "50%",
-            filter: "blur(28px)",
-            pointerEvents: "none",
-          }}
-        />
-      )}
+      {/* Glow no rodapé */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: -40,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 200,
+          height: 60,
+          background: "rgba(0,113,227,0.35)",
+          borderRadius: "50%",
+          filter: "blur(30px)",
+          pointerEvents: "none",
+        }}
+      />
     </div>
   );
 }
