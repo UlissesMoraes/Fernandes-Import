@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const WA_LINK =
-  "https://wa.me/5547999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais.";
+  "https://wa.me/5547999449554?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais.";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },

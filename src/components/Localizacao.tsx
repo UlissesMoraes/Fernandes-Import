@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 const MAPS_LINK =
-  "https://www.google.com/maps/search/Riviera+Concept+Praia+Brava+Itajaí";
+  "https://www.google.com/maps/search/Fernandes+Import+Av.+Osvaldo+Reis+3385+Praia+Brava+Itajaí+SC";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -85,10 +85,11 @@ export default function Localizacao() {
               </div>
               <div>
                 <p style={{ fontSize: 16, fontWeight: 600, color: "#fff", marginBottom: 4, letterSpacing: "-0.02em" }}>
-                  Riviera Concept
+                  Riviera Concept — Sala 509
                 </p>
                 <p style={{ fontSize: 15, color: "#86868B", lineHeight: 1.5 }}>
-                  Praia Brava, Itajaí — SC
+                  Av. Osvaldo Reis, 3385<br />
+                  Praia Brava, Itajaí — SC, 88306-773
                 </p>
               </div>
             </div>
@@ -117,8 +118,7 @@ export default function Localizacao() {
                   Horário de Funcionamento
                 </p>
                 <p style={{ fontSize: 15, color: "#86868B", lineHeight: 1.7 }}>
-                  Segunda a Sexta: 9h às 18h<br />
-                  Sábado: 9h às 13h
+                  Segunda a Sábado: 9h às 19h
                 </p>
               </div>
             </div>
@@ -146,7 +146,7 @@ export default function Localizacao() {
                   Telefone / WhatsApp
                 </p>
                 <p style={{ fontSize: 15, color: "#86868B" }}>
-                  (47) 99999-9999
+                  (47) 99944-9554
                 </p>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function Localizacao() {
           </a>
         </motion.div>
 
-        {/* Right — Map Placeholder */}
+        {/* Right — Google Maps */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -196,108 +196,21 @@ export default function Localizacao() {
           style={{
             height: 440,
             borderRadius: 28,
-            background: "#0D0D0D",
             border: "1px solid #2D2D2F",
             overflow: "hidden",
             position: "relative",
           }}
         >
-          {/* Map grid lines */}
-          <svg
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15 }}
-            viewBox="0 0 400 440"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            {Array.from({ length: 10 }).map((_, i) => (
-              <line key={`h${i}`} x1="0" y1={i * 44} x2="400" y2={i * 44} stroke="#fff" strokeWidth="0.5" />
-            ))}
-            {Array.from({ length: 10 }).map((_, i) => (
-              <line key={`v${i}`} x1={i * 44} y1="0" x2={i * 44} y2="440" stroke="#fff" strokeWidth="0.5" />
-            ))}
-          </svg>
-
-          {/* Streets */}
-          <svg
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.3 }}
-            viewBox="0 0 400 440"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            <path d="M0 180 Q100 160 200 200 Q300 240 400 220" stroke="#2D2D2F" strokeWidth="12" fill="none" />
-            <path d="M150 0 Q170 100 180 200 Q190 320 195 440" stroke="#2D2D2F" strokeWidth="8" fill="none" />
-            <path d="M0 300 Q120 280 200 290 Q300 300 400 280" stroke="#2D2D2F" strokeWidth="6" fill="none" />
-            <path d="M250 0 Q260 150 270 300 Q275 380 280 440" stroke="#2D2D2F" strokeWidth="5" fill="none" />
-          </svg>
-
-          {/* Location pin */}
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -60%)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <motion.div
-              animate={{ y: [-4, 4, -4] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: "50% 50% 50% 0",
-                background: "#0071E3",
-                transform: "rotate(-45deg)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 8px 32px rgba(0,113,227,0.4)",
-              }}
-            >
-              <div
-                style={{
-                  width: 16,
-                  height: 16,
-                  borderRadius: "50%",
-                  background: "#fff",
-                  transform: "rotate(45deg)",
-                }}
-              />
-            </motion.div>
-            <div
-              style={{
-                width: 12,
-                height: 12,
-                borderRadius: "50%",
-                background: "rgba(0,113,227,0.3)",
-                filter: "blur(4px)",
-                marginTop: 4,
-              }}
-            />
-          </div>
-
-          {/* Label */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 24,
-              left: 24,
-              right: 24,
-              padding: "16px 20px",
-              background: "rgba(22,22,23,0.95)",
-              backdropFilter: "blur(20px)",
-              borderRadius: 16,
-              border: "1px solid #2D2D2F",
-            }}
-          >
-            <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 2, letterSpacing: "-0.02em" }}>
-              Fernandes Import
-            </p>
-            <p style={{ fontSize: 13, color: "#86868B" }}>
-              Riviera Concept · Praia Brava, Itajaí
-            </p>
-          </div>
+          <iframe
+            src="https://maps.google.com/maps?q=Av.+Osvaldo+Reis,+3385,+Praia+Brava,+Itajaí,+SC,+88306-773&output=embed&hl=pt-BR&z=16"
+            width="100%"
+            height="100%"
+            style={{ border: 0, display: "block" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Localização Fernandes Import"
+          />
         </motion.div>
       </div>
 

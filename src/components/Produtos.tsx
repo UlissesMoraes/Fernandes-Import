@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WA_LINK =
-  "https://wa.me/5547999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20um%20produto.";
+  "https://wa.me/5547999449554?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20um%20produto.";
 
 type Category = "iPhone" | "MacBook" | "iPad" | "AirPods" | "Apple Watch";
 

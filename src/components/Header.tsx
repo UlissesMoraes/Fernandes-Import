@@ -14,7 +14,7 @@ const navItems = [
 ];
 
 const WA_LINK =
-  "https://wa.me/5547999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais.";
+  "https://wa.me/5547999449554?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais.";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
