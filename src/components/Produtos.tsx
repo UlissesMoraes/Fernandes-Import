@@ -17,6 +17,8 @@ interface Product {
   badge?: string;
 }
 
+const CDN = "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is";
+
 const products: Record<Category, Product[]> = {
   iPhone: [
     {
@@ -29,19 +31,19 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPhone 16",
       description: "Chip A18. Câmera Fusão de 48MP. Controle de Câmera.",
-      image: "/produtos/iphone/iphone-16.jpg",
+      image: `${CDN}/iphone-16-finish-unselect-gallery-1-202409_FMT_WHH`,
       gradient: "linear-gradient(135deg, #C0E8FF 0%, #9FBCFF 100%)",
     },
     {
       name: "iPhone 15 Pro",
       description: "Chip A17 Pro. Frame de titânio. USB-C 3.0.",
-      image: "/produtos/iphone/iphone-15-pro.jpg",
+      image: `${CDN}/iphone-15-pro-finish-unselect-gallery-1-202309_FMT_WHH`,
       gradient: "linear-gradient(135deg, #D4A676 0%, #8B7355 100%)",
     },
     {
       name: "iPhone 15",
       description: "Chip A16 Bionic. Dynamic Island. USB-C.",
-      image: "/produtos/iphone/iphone-15.jpg",
+      image: `${CDN}/iphone-15-finish-unselect-gallery-1-202309_FMT_WHH`,
       gradient: "linear-gradient(135deg, #FFD7C2 0%, #FFB8A2 100%)",
     },
   ],
@@ -49,20 +51,20 @@ const products: Record<Category, Product[]> = {
     {
       name: 'MacBook Pro 14"',
       description: "Chip M4 Pro. Tela Liquid Retina XDR. Até 24h de bateria.",
-      image: "/produtos/macbook/macbook-neo-color-unselect-202603-gallery-1_FMT_WHH.jpg",
+      image: `${CDN}/mbp14-m4pro-spacegray-select-202411_FMT_WHH`,
       gradient: "linear-gradient(135deg, #3A3A3C 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
     {
       name: 'MacBook Pro 16"',
       description: "Chip M4 Max. Potência máxima para profissionais.",
-      image: "/produtos/macbook/macbook-pro-16.jpg",
+      image: `${CDN}/mbp16-m4pro-spacegray-select-202411_FMT_WHH`,
       gradient: "linear-gradient(135deg, #4A4A4C 0%, #2C2C2E 100%)",
     },
     {
       name: "MacBook Air M3",
       description: "Chip M3. Ultra-fino. Perfeito para o dia a dia.",
-      image: "/produtos/macbook/macbook-air-m3.jpg",
+      image: `${CDN}/mba13-m3-midnight-select-202402_FMT_WHH`,
       gradient: "linear-gradient(135deg, #E8D5B7 0%, #C4A882 100%)",
     },
   ],
@@ -70,14 +72,14 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPad Pro M4",
       description: "O mais fino Apple de sempre. Tela Ultra Retina XDR.",
-      image: "/produtos/ipad/ipad-pro-m4.jpg",
+      image: `${CDN}/ipad-pro-13-m4-select-202405_FMT_WHH`,
       gradient: "linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%)",
       badge: "Novo",
     },
     {
       name: "iPad Air M2",
       description: "Chip M2. Tela Liquid Retina. Compatível com Apple Pencil.",
-      image: "/produtos/ipad/ipad-air-m2.jpg",
+      image: `${CDN}/ipad-air-select-202405_FMT_WHH`,
       gradient: "linear-gradient(135deg, #B8D4F5 0%, #93B8E8 100%)",
     },
     {
@@ -91,7 +93,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "AirPods Pro 2",
       description: "Cancelamento de ruído ativo. Áudio Adaptativo. H2 chip.",
-      image: "/produtos/airpods/airpods-pro-2.jpg",
+      image: `${CDN}/airpods-pro-2nd-gen-hero-202209_FMT_WHH`,
       gradient: "linear-gradient(135deg, #F5F5F7 0%, #E0E0E5 100%)",
       badge: "Best-seller",
     },
@@ -104,7 +106,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "AirPods Max",
       description: "Over-ear premium. Cancelamento de ruído de nível pro.",
-      image: "/produtos/airpods/airpods-max.jpg",
+      image: `${CDN}/airpods-max-select-202409_FMT_WHH`,
       gradient: "linear-gradient(135deg, #1C2D40 0%, #2D4A5F 100%)",
     },
   ],
@@ -119,7 +121,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "Apple Watch Ultra 2",
       description: "Resistência extrema. Titânio. GPS de precisão dual.",
-      image: "/produtos/apple-watch/ultra-2.jpg",
+      image: `${CDN}/watch-ultra2-select-202309_FMT_WHH`,
       gradient: "linear-gradient(135deg, #D4A843 0%, #A07830 100%)",
     },
   ],
