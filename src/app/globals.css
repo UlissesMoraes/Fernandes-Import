@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #000000;
+  --surface: #0D0D0D;
+  --surface-2: #161617;
+  --border: #2D2D2F;
+  --light-bg: #F5F5F7;
+  --accent: #0071E3;
+  --success: #34C759;
+  --text-primary: #FFFFFF;
+  --text-secondary: #86868B;
+  --whatsapp: #25D366;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000000;
+  color: #FFFFFF;
+  font-family: -apple-system, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #0071E3;
+  color: #fff;
+}
