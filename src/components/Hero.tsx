@@ -152,40 +152,45 @@ function IPhoneCSS() {
 }
 
 function IPhoneSVG() {
-  const [error, setError] = useState(false);
-
-  if (error) return <IPhoneCSS />;
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <div style={{ position: "relative" }}>
+      {/* CSS fallback — visível enquanto PNG não carrega */}
+      {!loaded && <IPhoneCSS />}
+
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/hero-iphone.png"
         alt="iPhone 3D"
-        onError={() => setError(true)}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(false)}
         style={{
           maxHeight: 540,
           width: "auto",
-          display: "block",
+          display: loaded ? "block" : "none",
           filter:
             "drop-shadow(0 40px 80px rgba(0,113,227,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.1))",
         }}
       />
-      {/* Glow sob a imagem */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: -24,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "60%",
-          height: 48,
-          background: "rgba(0,113,227,0.35)",
-          borderRadius: "50%",
-          filter: "blur(28px)",
-          pointerEvents: "none",
-        }}
-      />
+
+      {/* Glow sob a imagem PNG */}
+      {loaded && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: -24,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "60%",
+            height: 48,
+            background: "rgba(0,113,227,0.35)",
+            borderRadius: "50%",
+            filter: "blur(28px)",
+            pointerEvents: "none",
+          }}
+        />
+      )}
     </div>
   );
 }
