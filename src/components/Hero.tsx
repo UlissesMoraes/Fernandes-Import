@@ -152,30 +152,38 @@ function IPhoneCSS() {
 }
 
 function IPhoneSVG() {
-  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   return (
     <div style={{ position: "relative" }}>
-      {/* CSS fallback — visível enquanto PNG não carrega */}
-      {!loaded && <IPhoneCSS />}
+      {/* CSS fallback — mostrado enquanto PNG carrega ou se falhar */}
+      <div style={{ opacity: visible && !failed ? 0 : 1, transition: "opacity 0.4s ease", position: visible && !failed ? "absolute" : "relative" }}>
+        <IPhoneCSS />
+      </div>
 
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/hero-iphone.png"
-        alt="iPhone 3D"
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(false)}
-        style={{
-          maxHeight: 540,
-          width: "auto",
-          display: loaded ? "block" : "none",
-          filter:
-            "drop-shadow(0 40px 80px rgba(0,113,227,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.1))",
-        }}
-      />
+      {!failed && (
+        <img
+          src="/hero-iphone.png"
+          alt="iPhone 3D"
+          loading="eager"
+          onLoad={() => setVisible(true)}
+          onError={() => setFailed(true)}
+          style={{
+            maxHeight: 540,
+            width: "auto",
+            position: visible ? "relative" : "absolute",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.4s ease",
+            filter:
+              "drop-shadow(0 40px 80px rgba(0,113,227,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.1))",
+          }}
+        />
+      )}
 
       {/* Glow sob a imagem PNG */}
-      {loaded && (
+      {visible && !failed && (
         <div
           style={{
             position: "absolute",
