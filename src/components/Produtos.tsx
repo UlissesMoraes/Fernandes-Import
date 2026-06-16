@@ -22,7 +22,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPhone 16 Pro",
       description: "Chip A18 Pro. Câmera de 48MP com zoom 5x. Titânio.",
-      image: "/produtos/iphone/iphone-16-pro.jpg",
+      image: "/produtos/iphone/ip16-68f8ee3a79c7f-1400x1400.webp",
       gradient: "linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%)",
       badge: "Novo",
     },
@@ -49,7 +49,7 @@ const products: Record<Category, Product[]> = {
     {
       name: 'MacBook Pro 14"',
       description: "Chip M4 Pro. Tela Liquid Retina XDR. Até 24h de bateria.",
-      image: "/produtos/macbook/macbook-pro-14.jpg",
+      image: "/produtos/macbook/macbook-neo-color-unselect-202603-gallery-1_FMT_WHH.jpg",
       gradient: "linear-gradient(135deg, #3A3A3C 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
@@ -83,7 +83,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPad mini",
       description: "Compacto e poderoso. Chip A17 Pro. Design atemporal.",
-      image: "/produtos/ipad/ipad-mini.jpg",
+      image: "/produtos/ipad/ipad-mini-finish-unselect-gallery-1-202410_FMT_WHH.jpg",
       gradient: "linear-gradient(135deg, #D4C5E2 0%, #B8A4CF 100%)",
     },
   ],
@@ -98,7 +98,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "AirPods 4",
       description: "Novo design aberto. Qualidade de som extraordinária.",
-      image: "/produtos/airpods/airpods-4.jpg",
+      image: "/produtos/airpods/airpods-4-down-compare-202409_FMT_WHH.jpg",
       gradient: "linear-gradient(135deg, #FFFFFF 0%, #F0F0F5 100%)",
     },
     {
@@ -112,7 +112,7 @@ const products: Record<Category, Product[]> = {
     {
       name: "Apple Watch Series 10",
       description: "O mais fino Apple Watch. Tela maior. Chip S10.",
-      image: "/produtos/apple-watch/series-10.jpg",
+      image: "/produtos/apple-watch/watch_og_339223162.png",
       gradient: "linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
