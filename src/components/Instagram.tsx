@@ -1,133 +1,44 @@
 "use client";
 
-import { useRef, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 
+declare global {
+  interface Window {
+    instgrm?: { Embeds: { process: () => void } };
+  }
+}
+
 const INSTAGRAM_URL = "https://www.instagram.com/fernandesimport/";
+
+const posts = [
+  "https://www.instagram.com/p/DW_XEEJAJK0/",
+  "https://www.instagram.com/p/DDc7tRev60T/",
+  "https://www.instagram.com/p/DCor3i4xR2T/",
+  "https://www.instagram.com/p/DB5GaELxGJW/",
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } },
 };
 
-type PostMedia =
-  | { type: "video"; src: string; delay: number }
-  | { type: "image"; src: string; delay: number };
-
-const posts: PostMedia[] = [
-  { type: "video", src: "/produtos/iphone/video-iphone17-pro-max.mp4", delay: 0 },
-  { type: "video", src: "/produtos/iphone/video-unboxing-sonho.mp4", delay: 0.08 },
-  { type: "image", src: "/produtos/airpods/airpods-4-down-compare-202409_FMT_WHH.jpg", delay: 0.16 },
-  { type: "video", src: "/produtos/iphone/video-oferta-namorados.mp4", delay: 0.24 },
-  { type: "image", src: "/produtos/iphone/ip16-68f8ee3a79c7f-1400x1400.webp", delay: 0.32 },
-  { type: "image", src: "/produtos/macbook/macbook-neo-color-unselect-202603-gallery-1_FMT_WHH.jpg", delay: 0.40 },
-];
-
-function VideoPost({ src, delay }: { src: string; delay: number }) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.a
-      href={INSTAGRAM_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 0.96 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.5 }}
-      style={{ display: "block", aspectRatio: "1", position: "relative", overflow: "hidden", cursor: "pointer" }}
-      onMouseEnter={() => { setHovered(true); ref.current?.play(); }}
-      onMouseLeave={() => { setHovered(false); ref.current?.pause(); }}
-    >
-      <video
-        ref={ref}
-        src={src}
-        muted
-        playsInline
-        loop
-        preload="metadata"
-        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-      />
-      {/* dark overlay on hover */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: hovered ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0.15)",
-        transition: "background 0.25s ease",
-        display: "flex", alignItems: "center", justifyContent: "center",
-      }}>
-        {/* Reel icon always visible */}
-        <div style={{
-          position: "absolute", top: 10, right: 10,
-          opacity: 0.9,
-        }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-            <path d="M2 6a2 2 0 012-2h.5l2 4H2V6zm3.5-2H10l2 4H7.5L5.5 4zm6 0H16l2 4h-4.5L11.5 4zM18 4h.5a2 2 0 012 2v2h-4.5L18 4zM2 10h20v10a2 2 0 01-2 2H4a2 2 0 01-2-2V10zm10 2.5l-4 2.5 4 2.5 4-2.5-4-2.5z" />
-          </svg>
-        </div>
-        {hovered && (
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-        )}
-      </div>
-    </motion.a>
-  );
-}
-
-function ImagePost({ src, delay }: { src: string; delay: number }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.a
-      href={INSTAGRAM_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 0.96 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.5 }}
-      style={{ display: "block", aspectRatio: "1", position: "relative", overflow: "hidden", cursor: "pointer" }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <Image
-        src={src}
-        alt="Post Fernandes Import"
-        fill
-        unoptimized
-        sizes="(max-width: 768px) 50vw, 33vw"
-        style={{ objectFit: "cover", transition: "transform 0.4s ease", transform: hovered ? "scale(1.06)" : "scale(1)" }}
-      />
-      <div style={{
-        position: "absolute", inset: 0,
-        background: hovered ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0.05)",
-        transition: "background 0.25s ease",
-        display: "flex", alignItems: "center", justifyContent: "center", gap: 20,
-      }}>
-        {hovered && (
-          <>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#fff", fontWeight: 700, fontSize: 15 }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#fff", fontWeight: 700, fontSize: 15 }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-              </svg>
-            </div>
-          </>
-        )}
-      </div>
-    </motion.a>
-  );
-}
-
 export default function Instagram() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (window.instgrm) {
+      window.instgrm.Embeds.process();
+      setLoaded(true);
+    }
+  }, []);
+
+  const handleScriptLoad = () => {
+    window.instgrm?.Embeds.process();
+    setLoaded(true);
+  };
+
   return (
     <section
       style={{
@@ -136,14 +47,20 @@ export default function Instagram() {
         borderTop: "1px solid #2D2D2F",
       }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <Script
+        src="https://www.instagram.com/embed.js"
+        strategy="afterInteractive"
+        onLoad={handleScriptLoad}
+      />
+
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
           variants={fadeUp}
-          style={{ textAlign: "center", marginBottom: 56 }}
+          style={{ textAlign: "center", marginBottom: 64 }}
         >
           <div
             style={{
@@ -157,9 +74,9 @@ export default function Instagram() {
               borderRadius: 980,
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="url(#ig-grad)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="url(#ig-grad2)">
               <defs>
-                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#f09433" />
                   <stop offset="50%" stopColor="#dc2743" />
                   <stop offset="100%" stopColor="#bc1888" />
@@ -170,7 +87,16 @@ export default function Instagram() {
             <span style={{ fontSize: 13, fontWeight: 600, color: "#dc2743" }}>@fernandesimport</span>
           </div>
 
-          <h2 style={{ fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 700, letterSpacing: "-0.04em", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
+          <h2
+            style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              color: "#fff",
+              lineHeight: 1.1,
+              marginBottom: 16,
+            }}
+          >
             Siga nosso Instagram
           </h2>
           <p style={{ fontSize: 18, color: "#86868B", maxWidth: 440, margin: "0 auto" }}>
@@ -178,25 +104,83 @@ export default function Instagram() {
           </p>
         </motion.div>
 
-        {/* Grid com conteúdo real */}
+        {/* Posts grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 3,
-            borderRadius: 20,
-            overflow: "hidden",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 20,
             marginBottom: 48,
           }}
-          className="ig-grid"
+          className="ig-embed-grid"
         >
-          {posts.map((post, i) =>
-            post.type === "video" ? (
-              <VideoPost key={i} src={post.src} delay={post.delay} />
-            ) : (
-              <ImagePost key={i} src={post.src} delay={post.delay} />
-            )
-          )}
+          {posts.map((url, i) => (
+            <motion.div
+              key={url}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              style={{
+                borderRadius: 24,
+                overflow: "hidden",
+                border: "1px solid #2D2D2F",
+                background: "#161617",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+                position: "relative",
+              }}
+            >
+              {/* Skeleton while loading */}
+              {!loaded && (
+                <div
+                  style={{
+                    height: 480,
+                    background: "linear-gradient(90deg, #1C1C1E 25%, #2C2C2E 50%, #1C1C1E 75%)",
+                    backgroundSize: "200% 100%",
+                    animation: "skeleton-shimmer 1.5s infinite",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="#3A3A3C" strokeWidth="1.5" />
+                    <circle cx="12" cy="10" r="3" stroke="#3A3A3C" strokeWidth="1.5" />
+                    <path d="M2 17l4-4 3 3 4-5 5 6" stroke="#3A3A3C" strokeWidth="1.5" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              )}
+
+              {/* Instagram embed */}
+              <blockquote
+                className="instagram-media"
+                data-instgrm-permalink={url}
+                data-instgrm-version="14"
+                data-instgrm-captioned
+                style={{
+                  background: "#fff",
+                  border: 0,
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  margin: 0,
+                  maxWidth: "100%",
+                  minWidth: 0,
+                  padding: 0,
+                  width: "100%",
+                  display: loaded ? "block" : "none",
+                }}
+              >
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#0071E3", fontSize: 14, padding: 16, display: "block" }}
+                >
+                  Ver post no Instagram
+                </a>
+              </blockquote>
+            </motion.div>
+          ))}
         </div>
 
         {/* CTA */}
@@ -244,8 +228,12 @@ export default function Instagram() {
       </div>
 
       <style>{`
+        @keyframes skeleton-shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
         @media (max-width: 767px) {
-          .ig-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .ig-embed-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
