@@ -160,7 +160,7 @@ function IPhoneSVG() {
     <div style={{ position: "relative" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/hero-iphone.svg"
+        src="/hero-iphone.png"
         alt="iPhone 3D"
         onError={() => setError(true)}
         style={{
