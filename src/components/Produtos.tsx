@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WA_LINK =
@@ -11,7 +12,7 @@ type Category = "iPhone" | "MacBook" | "iPad" | "AirPods" | "Apple Watch";
 interface Product {
   name: string;
   description: string;
-  price: string;
+  image: string;
   gradient: string;
   badge?: string;
 }
@@ -21,26 +22,26 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPhone 16 Pro",
       description: "Chip A18 Pro. Câmera de 48MP com zoom 5x. Titânio.",
-      price: "A partir de R$ 9.499",
+      image: "/produtos/iphone/iphone-16-pro.jpg",
       gradient: "linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%)",
       badge: "Novo",
     },
     {
       name: "iPhone 16",
       description: "Chip A18. Câmera Fusão de 48MP. Controle de Câmera.",
-      price: "A partir de R$ 7.299",
+      image: "/produtos/iphone/iphone-16.jpg",
       gradient: "linear-gradient(135deg, #C0E8FF 0%, #9FBCFF 100%)",
     },
     {
       name: "iPhone 15 Pro",
       description: "Chip A17 Pro. Frame de titânio. USB-C 3.0.",
-      price: "A partir de R$ 7.999",
+      image: "/produtos/iphone/iphone-15-pro.jpg",
       gradient: "linear-gradient(135deg, #D4A676 0%, #8B7355 100%)",
     },
     {
       name: "iPhone 15",
       description: "Chip A16 Bionic. Dynamic Island. USB-C.",
-      price: "A partir de R$ 5.999",
+      image: "/produtos/iphone/iphone-15.jpg",
       gradient: "linear-gradient(135deg, #FFD7C2 0%, #FFB8A2 100%)",
     },
   ],
@@ -48,20 +49,20 @@ const products: Record<Category, Product[]> = {
     {
       name: 'MacBook Pro 14"',
       description: "Chip M4 Pro. Tela Liquid Retina XDR. Até 24h de bateria.",
-      price: "A partir de R$ 19.999",
+      image: "/produtos/macbook/macbook-pro-14.jpg",
       gradient: "linear-gradient(135deg, #3A3A3C 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
     {
       name: 'MacBook Pro 16"',
       description: "Chip M4 Max. Potência máxima para profissionais.",
-      price: "A partir de R$ 28.999",
+      image: "/produtos/macbook/macbook-pro-16.jpg",
       gradient: "linear-gradient(135deg, #4A4A4C 0%, #2C2C2E 100%)",
     },
     {
       name: "MacBook Air M3",
       description: "Chip M3. Ultra-fino. Perfeito para o dia a dia.",
-      price: "A partir de R$ 11.999",
+      image: "/produtos/macbook/macbook-air-m3.jpg",
       gradient: "linear-gradient(135deg, #E8D5B7 0%, #C4A882 100%)",
     },
   ],
@@ -69,20 +70,20 @@ const products: Record<Category, Product[]> = {
     {
       name: "iPad Pro M4",
       description: "O mais fino Apple de sempre. Tela Ultra Retina XDR.",
-      price: "A partir de R$ 11.999",
+      image: "/produtos/ipad/ipad-pro-m4.jpg",
       gradient: "linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%)",
       badge: "Novo",
     },
     {
       name: "iPad Air M2",
       description: "Chip M2. Tela Liquid Retina. Compatível com Apple Pencil.",
-      price: "A partir de R$ 7.499",
+      image: "/produtos/ipad/ipad-air-m2.jpg",
       gradient: "linear-gradient(135deg, #B8D4F5 0%, #93B8E8 100%)",
     },
     {
       name: "iPad mini",
       description: "Compacto e poderoso. Chip A17 Pro. Design atemporal.",
-      price: "A partir de R$ 5.299",
+      image: "/produtos/ipad/ipad-mini.jpg",
       gradient: "linear-gradient(135deg, #D4C5E2 0%, #B8A4CF 100%)",
     },
   ],
@@ -90,20 +91,20 @@ const products: Record<Category, Product[]> = {
     {
       name: "AirPods Pro 2",
       description: "Cancelamento de ruído ativo. Áudio Adaptativo. H2 chip.",
-      price: "A partir de R$ 2.499",
+      image: "/produtos/airpods/airpods-pro-2.jpg",
       gradient: "linear-gradient(135deg, #F5F5F7 0%, #E0E0E5 100%)",
       badge: "Best-seller",
     },
     {
       name: "AirPods 4",
       description: "Novo design aberto. Qualidade de som extraordinária.",
-      price: "A partir de R$ 1.499",
+      image: "/produtos/airpods/airpods-4.jpg",
       gradient: "linear-gradient(135deg, #FFFFFF 0%, #F0F0F5 100%)",
     },
     {
       name: "AirPods Max",
       description: "Over-ear premium. Cancelamento de ruído de nível pro.",
-      price: "A partir de R$ 4.999",
+      image: "/produtos/airpods/airpods-max.jpg",
       gradient: "linear-gradient(135deg, #1C2D40 0%, #2D4A5F 100%)",
     },
   ],
@@ -111,14 +112,14 @@ const products: Record<Category, Product[]> = {
     {
       name: "Apple Watch Series 10",
       description: "O mais fino Apple Watch. Tela maior. Chip S10.",
-      price: "A partir de R$ 4.499",
+      image: "/produtos/apple-watch/series-10.jpg",
       gradient: "linear-gradient(135deg, #2C2C2E 0%, #1C1C1E 100%)",
       badge: "Novo",
     },
     {
       name: "Apple Watch Ultra 2",
-      description: "Resistência extrema. Titanio. GPS de precisão dual.",
-      price: "A partir de R$ 9.999",
+      description: "Resistência extrema. Titânio. GPS de precisão dual.",
+      image: "/produtos/apple-watch/ultra-2.jpg",
       gradient: "linear-gradient(135deg, #D4A843 0%, #A07830 100%)",
     },
   ],
@@ -127,6 +128,8 @@ const products: Record<Category, Product[]> = {
 const categories: Category[] = ["iPhone", "MacBook", "iPad", "AirPods", "Apple Watch"];
 
 function ProductCard({ product }: { product: Product }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <motion.div
       whileHover={{ scale: 1.02, y: -4 }}
@@ -144,12 +147,13 @@ function ProductCard({ product }: { product: Product }) {
       {/* Image area */}
       <div
         style={{
-          height: 220,
-          background: product.gradient,
+          height: 260,
           position: "relative",
+          background: imgError ? product.gradient : "#161617",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          overflow: "hidden",
         }}
       >
         {product.badge && (
@@ -165,22 +169,46 @@ function ProductCard({ product }: { product: Product }) {
               fontSize: 12,
               fontWeight: 600,
               letterSpacing: "-0.01em",
+              zIndex: 2,
             }}
           >
             {product.badge}
           </div>
         )}
-        {/* Product silhouette */}
-        <div
-          style={{
-            width: 80,
-            height: 140,
-            borderRadius: 16,
-            background: "rgba(255,255,255,0.15)",
-            backdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.2)",
-          }}
-        />
+
+        {/* Real photo */}
+        {!imgError && (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: "cover" }}
+            onError={() => setImgError(true)}
+          />
+        )}
+
+        {/* Fallback placeholder (shown when image is missing) */}
+        {imgError && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 10,
+              opacity: 0.4,
+            }}
+          >
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="2" width="24" height="28" rx="5" stroke="currentColor" strokeWidth="1.5" />
+              <rect x="8" y="6" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
+              <circle cx="16" cy="27" r="1.5" fill="currentColor" />
+            </svg>
+            <span style={{ fontSize: 12, color: "inherit", fontWeight: 500 }}>
+              Adicionar foto
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -201,22 +229,11 @@ function ProductCard({ product }: { product: Product }) {
             fontSize: 15,
             color: "#86868B",
             lineHeight: 1.5,
-            marginBottom: 16,
+            marginBottom: 20,
             flex: 1,
           }}
         >
           {product.description}
-        </p>
-        <p
-          style={{
-            fontSize: 16,
-            fontWeight: 600,
-            color: "#fff",
-            marginBottom: 20,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {product.price}
         </p>
         <a
           href={WA_LINK}
